@@ -6,7 +6,7 @@ $(function(){
   
                   Swal.fire({
                     title: 'Are you sure?',
-                    text: "You want to delete this agency?",
+                    text: "You want to delete this data?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -14,10 +14,11 @@ $(function(){
                     confirmButtonText: 'Yes, delete it!'
                   }).then((result) => {
                     if (result.isConfirmed) {
+                      
                       window.location.href = link
                       Swal.fire(
                         'Deleted!',
-                        'Your file has been deleted.',
+                        'Your data has been deleted.',
                         'success'
                       )
                     }

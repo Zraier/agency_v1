@@ -181,7 +181,7 @@ class AdminController extends Controller
                 'alert-type'=> 'success'
     
             );
-            return redirect()->back()->with($notification);     
+            return redirect('/admin/Entreprise')->with($notification);     
         }
         public function AdminUpdateEntreprise($id_ent) {
         
@@ -218,7 +218,7 @@ class AdminController extends Controller
            
             
             $notification = array(
-                'message' => 'Agency Deleted Successfully',
+                'message' => 'Entreprise Deleted Successfully',
                 'alert-type'=> 'success'
     
             );
