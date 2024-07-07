@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 use function Laravel\Prompts\alert;
 
@@ -72,6 +73,18 @@ class EmployeeController extends Controller
         
        
             return view('employee.employee_matchmaking', compact('data'));
+    }
+
+    public function TripDetail($id_voy){
+        $data= VoyAgency::where('ref_voy_agence', $id_voy)->first();
+        // dd($data);
+        return view('employee.employee_trips_detail', compact('data'));
+    }
+
+    public function BookTrip(){
+        $text = 'You booked this Trip'; // Customize this as needed
+        $qrCode = QrCode::size(200)->generate($text);
+        return view('employee.employee_trips_booked', compact('qrCode'));
     }
     
     public function Employeelogout(Request $request): RedirectResponse

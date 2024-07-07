@@ -78,7 +78,7 @@ class AdminController extends Controller
                 'alert-type'=> 'success'
     
             );
-            return redirect()->back()->with($notification);     
+            return redirect('/admin/Agency')->with($notification);     
         }
 
     public function AdminUpdateAgency($id_agence) {
@@ -283,7 +283,7 @@ class AdminController extends Controller
                 'alert-type'=> 'success'
     
             );
-            return redirect()->back()->with($notification);     
+            return redirect('/admin/Employee')->with($notification);     
         }
         public function AdminUpdateEmployee($id_emp) {
         

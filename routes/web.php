@@ -61,7 +61,7 @@ Route::middleware('auth','role:admin')->group(function(){
     Route::post('/admin/AddEmployee', [AdminController::class, 'EmployeeStore'])->name('admin.EmployeeStore');
     Route::get('/admin/Update/Employee/{id_emp}', [AdminController::class, 'AdminUpdateEmployee'])->name('admin.EmployeePageUpdate');
     Route::post('/admin/Update/Employee', [AdminController::class, 'EmployeeUpdate'])->name('admin.EmployeeUpdate');
-    Route::get('/admin/Delete/Agency/{username}', [AdminController::class, 'AdminDeleteEmployee'])->name('admin.EmployeeDelete');
+    Route::get('/admin/Delete/Employee/{username}', [AdminController::class, 'AdminDeleteEmployee'])->name('admin.EmployeeDelete');
 
     //admin profile
     Route::get('/admin/logout', [AdminController::class, 'Adminlogout'])->name('admin.logout');
@@ -97,6 +97,8 @@ Route::middleware('auth','role:employee')->group(function(){
     Route::get('/employee/Planing', [EmployeeController::class, 'Employeeplan'])->name('Employee.plan');
     Route::post('/employee/Planing', [EmployeeController::class, 'StorePlanEmployee'])->name('store.planemployee');
     Route::get('/employee/Matchmaking', [EmployeeController::class, 'Matchmaking'])->name('Employee.Matchmaking');
+    Route::get('/employee/TripDetail/{id_voy}', [EmployeeController::class,'TripDetail'])->name('employee.TripDetail');
+    Route::get('/employee/BookedTrip', [EmployeeController::class,'BookTrip'])->name('employee.BookTrip');
 
 
 });

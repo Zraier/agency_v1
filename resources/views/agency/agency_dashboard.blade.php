@@ -64,6 +64,9 @@
 	
 	</head>
 	<body>
+		
+		{{-- 
+		loading
 		<div class="pre-loader">
 			<div class="pre-loader-box">
 				<div class="loader-logo">
@@ -76,6 +79,7 @@
 				<div class="loading-text">Loading...</div>
 			</div>
 		</div>
+		 --}}
 		
 		@php
 		$username= Auth::user()->username;

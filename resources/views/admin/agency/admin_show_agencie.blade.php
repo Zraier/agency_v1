@@ -48,7 +48,6 @@
                   <a href="{{ route('admin.AgencyDelete', ['username' => $agencie->username]) }}" class="btn btn-danger" id="delete">Delete</a>
                 </td>
             </tr>  
-         
             @endforeach
             
         </tbody>

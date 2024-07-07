@@ -7,6 +7,7 @@ use App\Models\VoyAgency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AgencyController extends Controller
 {
@@ -45,7 +46,7 @@ class AgencyController extends Controller
             $newvoy['image']=$filename;
         }
         $newvoy->save();
-        
+        Alert::success('Trip planed successfully');
         return redirect()->back(); 
         
             

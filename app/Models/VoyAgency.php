@@ -9,6 +9,7 @@ class VoyAgency extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $primaryKey = 'ref_voy_agence';
 
     public function country()
     {
