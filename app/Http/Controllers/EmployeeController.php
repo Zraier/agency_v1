@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\agencie;
+use App\Models\Employee;
 use App\Models\VoyAgency;
 use App\Models\VoyUser;
 use Illuminate\Http\Request;
@@ -56,12 +57,11 @@ class EmployeeController extends Controller
         return redirect()->back();     
     }
 
-    public function Matchmaking($id_emp){
-        
+    public function Matchmaking($id){
         
         $currentDate = Carbon::now()->toDateString();
 
-        $data =VoyAgency::whereIn('ref_voy_agence', function ($query) use($id_emp) {
+        $data =VoyAgency::whereIn('ref_voy_agence', function ($query) use($id) {
             $query->select('ref_voy_agence')
             ->from('voy_users as v')
             ->join('voy_agencies as a', function ($join) {
@@ -71,7 +71,7 @@ class EmployeeController extends Controller
                     
     })
     // Add any additional conditions if needed 
-    ->where('v.id_emp', '=', $id_emp)
+    ->where('v.id_emp', '=', $id)
     ->distinct();
     })->get();
         
@@ -84,16 +84,20 @@ class EmployeeController extends Controller
         return view('employee.employee_trips_detail', compact('data'));
     }
 
-    public function BookTrip($id_voy){
+    public function BookTrip($id_voy, $id){
+        $info = Employee::where('id_emp',$id);
         $data= VoyAgency::where('ref_voy_agence', $id_voy)->first();
+
         $id = $data->ref_voy_agence;
         $agence = $data->findname->name;
         $country = $data->country->name ;
         $date = $data->date;
         $periode = $data->duree;
         $prog = $date->programme;
-        $user = 
-        $text = 'je t"aime fort, que dieu te protege'; // Customize this as needed
+        $user_name = $info->name;
+        $user_mail = $info->email;
+        $user_phone = $info->phone;
+        $text = $id ."\n". $agence."\n". $country."\n".$date."\n". $user_name."\n".$user_mail."\n".$user_phone."\n". $periode."\n"; // Customize this as needed
         $qrCode = QrCode::size(200)->generate($text);
         return view('employee.employee_trips_booked', compact('qrCode'));
     }

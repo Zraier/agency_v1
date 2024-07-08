@@ -96,7 +96,7 @@ Route::middleware('auth','role:employee')->group(function(){
     Route::get('/employee/Trips/{id}', [EmployeeController::class, 'EmployeeTrips'])->name('Employee.trips');
     Route::get('/employee/Planing', [EmployeeController::class, 'Employeeplan'])->name('Employee.plan');
     Route::post('/employee/Planing', [EmployeeController::class, 'StorePlanEmployee'])->name('store.planemployee');
-    Route::get('/employee/Matchmaking/{id_emp}', [EmployeeController::class, 'Matchmaking'])->name('Employee.Matchmaking');
+    Route::get('/employee/Matchmaking/{id}', [EmployeeController::class, 'Matchmaking'])->name('Employee.Matchmaking');
     Route::get('/employee/TripDetail/{id_voy}', [EmployeeController::class,'TripDetail'])->name('employee.TripDetail');
     Route::get('/employee/BookedTrip/{id_voy}', [EmployeeController::class,'BookTrip'])->name('employee.BookTrip');
 
