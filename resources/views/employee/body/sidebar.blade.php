@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('Employee.Matchmaking') }}" class="dropdown-toggle no-arrow">
+                    <a href="{{ route('Employee.Matchmaking',  ['id_emp' => $profileData->id_emp]) }}" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-journal-medical"></span
                         ><span class="mtext">Matchmaking</span>
                     </a>

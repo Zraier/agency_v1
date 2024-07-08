@@ -41,7 +41,7 @@
                     <p class="card-text">
                         {{$data->programme}}
                     </p>
-                    <a href="{{ route('employee.BookTrip') }}" class="btn btn-primary">Book Now!</a>
+                    <a href="{{ route('employee.BookTrip', ['id_voy' => $data->ref_voy_agence]) }}" class="btn btn-primary">Book Now!</a>
                     
                 </div>
                 </div>

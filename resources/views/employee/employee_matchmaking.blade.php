@@ -42,7 +42,7 @@
                     <h5>{{ $trip->date }}</h5>
                     <h5>{{ $trip->duree }} Days</h5>
                     <p class="card-text">
-                        {{$trip->programme}}
+                        click to see details
                     </p>
                 </div>
                     </a>

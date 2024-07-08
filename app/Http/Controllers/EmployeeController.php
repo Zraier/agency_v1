@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use PhpParser\Node\Stmt\Global_;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -55,20 +56,23 @@ class EmployeeController extends Controller
         return redirect()->back();     
     }
 
-    public function Matchmaking(){
+    public function Matchmaking($id_emp){
+        
         
         $currentDate = Carbon::now()->toDateString();
 
-        $data =VoyAgency::whereIn('ref_voy_agence', function ($query) {
+        $data =VoyAgency::whereIn('ref_voy_agence', function ($query) use($id_emp) {
             $query->select('ref_voy_agence')
             ->from('voy_users as v')
             ->join('voy_agencies as a', function ($join) {
                 $join->on('v.pays', '=', 'a.pays')
                     ->on('v.date', '=', 'a.date')
                     ->on('v.duree', '=', 'a.duree');
+                    
     })
-    // Add any additional conditions if needed
-    ->distinct();// To ensure unique values
+    // Add any additional conditions if needed 
+    ->where('v.id_emp', '=', $id_emp)
+    ->distinct();
     })->get();
         
        
@@ -77,12 +81,19 @@ class EmployeeController extends Controller
 
     public function TripDetail($id_voy){
         $data= VoyAgency::where('ref_voy_agence', $id_voy)->first();
-        // dd($data);
         return view('employee.employee_trips_detail', compact('data'));
     }
 
-    public function BookTrip(){
-        $text = 'You booked this Trip'; // Customize this as needed
+    public function BookTrip($id_voy){
+        $data= VoyAgency::where('ref_voy_agence', $id_voy)->first();
+        $id = $data->ref_voy_agence;
+        $agence = $data->findname->name;
+        $country = $data->country->name ;
+        $date = $data->date;
+        $periode = $data->duree;
+        $prog = $date->programme;
+        $user = 
+        $text = 'je t"aime fort, que dieu te protege'; // Customize this as needed
         $qrCode = QrCode::size(200)->generate($text);
         return view('employee.employee_trips_booked', compact('qrCode'));
     }
